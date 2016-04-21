@@ -7,9 +7,9 @@ require('./mainHeader.tag');
 
     <script>
 
-        const App = this;
+        const app = this;
 
-        App.user = opts.user;
+        app.user = opts.user;
 
     </script>
 

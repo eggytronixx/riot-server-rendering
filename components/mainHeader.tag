@@ -2,7 +2,7 @@
 
     <h1>{title}</h1>
 
-    <button if={!user} onclick={signIn} > sign in </button>
+    <button if={!user} onclick={signIn}> sign in </button>
 
 
     <script>
@@ -11,10 +11,9 @@
 
         mainHeader.title = opts.title;
 
-        mainHeader.signIn = function () {
+        mainHeader.signIn = () => {
 
             console.log('trying to sign in');
-
 
         };
 

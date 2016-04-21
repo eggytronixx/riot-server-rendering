@@ -14,7 +14,7 @@ function renderFullPage(title, html, tagName, opts) {
         </head>
         <body>
             ${html}
-            <script src="https://cdn.jsdelivr.net/riot/2.3/riot.min.js"></script>
+            <script src="/libs/riot/riot.js"></script>
             <script src="/components/${tagName}.js"></script>
             <script>
                riot.mount("${tagName}", ${JSON.stringify(opts)})
@@ -36,7 +36,7 @@ module.exports =function (options) {
 
             let html = riot.render(options.tagName, options.opts);
 
-            res.send(renderFullPage(options.title, html, options.tagName, options.opts));
+            res.status(200).send(renderFullPage(options.title, html, options.tagName, options.opts));
 
         };
 

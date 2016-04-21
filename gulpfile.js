@@ -11,23 +11,20 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const eventStream = require('event-stream');
 const riotify = require('./libs/riotify');
-const babelify = require("babelify");
-
+const babelify = require('babelify');
 
 
 gulp.task('riot', () => {
 
     let files = fs.readdirSync('./components');
 
-    console.log(files);
-
     let tasks = _.map(files, file => {
 
         let filepath = `./components/${file}`;
-        
-        return browserify({entries: [filepath]})
+
+        return browserify({ entries: [filepath]})
             .transform(riotify)
-            .transform(babelify, {presets: ["es2015"]})
+            .transform(babelify, { presets: ['es2015'], extensions: ['.tag']})
             .bundle()
             .pipe(source(`${file.split('.')[0]}.js`))
             .pipe(gulp.dest('public/components'));
