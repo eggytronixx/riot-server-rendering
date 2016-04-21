@@ -12,4 +12,11 @@ router.use('/api/v0.1', api);
 router.use('/', views);
 
 
+router.get('/session', (req, res) => {
+
+    res.status(200).json(req.session);
+
+})
+
+
 module.exports = router;

@@ -6,14 +6,14 @@ const views = express.Router();
 
 views.get('/', (req, res) => {
 
-    let options = {
+    res.renderComponent({
         title: 'Riot Server Rendering',
-        tagName: 'app',
-        props: { user: req.user || false },
-        script: 'js/app'
-    };
-
-    res.renderComponent(options);
+        tagName: 'App',
+        opts: {
+            user: req.user || false,
+            title: 'Hello World'
+        }
+    });
 
 });
 

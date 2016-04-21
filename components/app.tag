@@ -1,3 +1,16 @@
+require('./mainHeader.tag');
+
 <app>
-    <h1>This is a title!</h1>
+
+    <mainHeader title={opts.title} user={opts.user}></mainHeader>
+
+
+    <script>
+
+        const App = this;
+
+        App.user = opts.user;
+
+    </script>
+
 </app>

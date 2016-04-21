@@ -4,7 +4,7 @@ const riot = require('riot');
 const _ = require('lodash');
 const fs = require('fs');
 
-function renderFullPage(html, tagName, props, script, title) {
+function renderFullPage(title, html, tagName, opts) {
 
     return `
     <!doctype html>
@@ -14,12 +14,11 @@ function renderFullPage(html, tagName, props, script, title) {
         </head>
         <body>
             ${html}
-            <script src='https://cdn.jsdelivr.net/riot/2.3/riot+compiler.min.js'></script>
-            <script src='${tagName}.tag' type='riot/tag'></script>
-            <script> 
-                riot.mount('${tagName}', ${JSON.stringify(props)});
+            <script src="https://cdn.jsdelivr.net/riot/2.3/riot.min.js"></script>
+            <script src="/components/${tagName}.js"></script>
+            <script>
+               riot.mount("${tagName}", ${JSON.stringify(opts)})
             </script>
-            <script src="/${script}.js"></script>
         </body>
     </html>
     `;
@@ -35,9 +34,9 @@ module.exports =function (options) {
 
         res.renderComponent = function (options) {
 
-            let html = riot.render(options.tagName, options.props);
+            let html = riot.render(options.tagName, options.opts);
 
-            res.send(renderFullPage(html, options.tagName, options.props, options.script, options.title));
+            res.send(renderFullPage(options.title, html, options.tagName, options.opts));
 
         };
 
