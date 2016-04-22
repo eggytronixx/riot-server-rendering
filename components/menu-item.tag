@@ -8,8 +8,12 @@
 
         const menuItem = this;
 
-        menuItem.title = opts.title || '';
-        menuItem.onClick = opts.onClick || defaultFn;
+        menuItem.title = opts.btnTitle || '';
+        menuItem.onClick = function (e) {
+
+            if(opts.onClick) opts.onClick(e, menuItem);
+
+        };
 
     </script>
 

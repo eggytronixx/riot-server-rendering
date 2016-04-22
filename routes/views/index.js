@@ -11,7 +11,7 @@ views.get('/', (req, res) => {
         tagName: 'app',
         opts: {
             user: req.user || false,
-            title: 'Hello World'
+            title: 'Riot Rocks'
         }
     });
 

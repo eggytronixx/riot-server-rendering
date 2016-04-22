@@ -1,1 +1,0 @@
-riot.mount('App', window.__opts__);

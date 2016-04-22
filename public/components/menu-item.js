@@ -7,8 +7,11 @@ module.exports = riot.tag2('menu-item', '<button onclick="{onClick}">{title}</bu
 
         var menuItem = this;
 
-        menuItem.title = opts.title || '';
-        menuItem.onClick = opts.onClick || defaultFn;
+        menuItem.title = opts.btnTitle || '';
+        menuItem.onClick = function (e) {
+
+                if (opts.onClick) opts.onClick(e, menuItem);
+        };
 });
 
 },{}]},{},[1]);

@@ -1,9 +1,10 @@
 require('./menu-item.tag');
+require('./overlay-menu.tag');
 
 <main-header>
 
     <div class="left-section">
-        <menu-item onClick={openMenu} title="Menu" />
+        <menu-item onClick={toggleMenu} btn-title="Menu" />
     </div>
 
     <div class="middle-section">
@@ -11,24 +12,35 @@ require('./menu-item.tag');
     </div>
 
     <div class="right-section">
-        <menu-item if={!user} onClick={signInUser} title="Sign In" />
+        <menu-item if={!user} on-click={signInUser} btn-title="Sign In"/>
     </div>
+
+    <overlay-menu if={isMenuOpen}/>
+
 
     <script>
 
         const mainHeader = this;
 
         mainHeader.title = opts.title;
+        mainHeader.isMenuOpen = false;
 
-        mainHeader.openMenu = function (e) {
+        mainHeader.toggleMenu = function () {
 
-            console.log('trigger open menu event')
+            mainHeader.isMenuOpen = !mainHeader.isMenuOpen;
 
         };
 
-        mainHeader.signInUser = function (e) {
-            console.log('trigger sign in window')
-        }
+        mainHeader.signInUser = function (e, leftMenuItemTag) {
+
+            leftMenuItemTag.title =  leftMenuItemTag.title === 'Sign Out' ? 'Sign In' : 'Sign Out';
+
+
+
+        };
+
+
+
 
     </script>
 
