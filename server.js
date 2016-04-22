@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const session = require('express-session');
 const app = express();
-const renderComponent = require('./libs/renderComponent');
+const riotRenderComponent = require('./libs/renderComponent');
 
 let oneDay = 86400000;
 
@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // middleware to render component;
-app.use(renderComponent({ path: `${__dirname}/components`}));
+app.use(riotRenderComponent({ path: `${__dirname}/components`}));
 
 // allow access to public
 app.use(express.static(`${__dirname}/public`, { maxAge: oneDay }));

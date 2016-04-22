@@ -1,8 +1,8 @@
-require('./mainHeader.tag');
+require('./main-header.tag');
 
 <app>
 
-    <mainHeader title={opts.title} user={opts.user}></mainHeader>
+    <main-header title={opts.title} user={opts.user}></main-header>
 
 
     <script>
