@@ -1,5 +1,6 @@
 require('./menu-item.tag');
 require('./overlay-menu.tag');
+var BrowserRequest = require('../libs/browserRequest');
 
 <main-header>
 
@@ -12,34 +13,59 @@ require('./overlay-menu.tag');
     </div>
 
     <div class="right-section">
-        <menu-item if={!user} on-click={signInUser} btn-title="Sign In"/>
+        <menu-item if={!state.user} on-click={signInUser} btn-title="Sign In"/>
+        <menu-item if={state.user} on-click={signOutUser} btn-title="Sign Out"/>
     </div>
 
-    <overlay-menu if={isMenuOpen}/>
+    <overlay-menu if={state.isMenuOpen} state={opts.state}/>
 
 
     <script>
+        'use strict';
 
         const mainHeader = this;
 
-        mainHeader.title = opts.title;
-        mainHeader.isMenuOpen = false;
+        mainHeader.state = opts.state;
 
         mainHeader.toggleMenu = function () {
 
-            mainHeader.isMenuOpen = !mainHeader.isMenuOpen;
+            mainHeader.state.trigger('toggle-menu');
 
         };
 
-        mainHeader.signInUser = function (e, leftMenuItemTag) {
+        mainHeader.signInUser = function(e, leftMenuItemTag) {
 
-            leftMenuItemTag.title =  leftMenuItemTag.title === 'Sign Out' ? 'Sign In' : 'Sign Out';
+            let request = new BrowserRequest({json: true});
+            let data =  {email: 'tektronix775@aol.com', password: 'abcdefg'}
 
+            let promise = request.post('/api/v0.1/signin', data);
 
+            promise.then(function(data){
 
-        };
+                mainHeader.state.trigger('user-sign-in', data.user)
 
+            });
 
+        }
+
+        mainHeader.signOutUser = function () {
+
+            mainHeader.state.trigger('user-sign-out');
+
+        }
+
+        mainHeader.on('update', function () {
+
+            mainHeader.title = opts.state.user ? opts.state.user.alias : opts.state.title;
+
+        });
+
+        mainHeader.state.on('toggle-menu', function () {
+
+            mainHeader.state.isMenuOpen = !mainHeader.state.isMenuOpen;
+            mainHeader.update();
+
+        });
 
 
     </script>

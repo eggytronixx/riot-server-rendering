@@ -2,6 +2,13 @@
 'use strict';
 
 module.exports = require('./menu-item.tag');
+
+riot.tag2('main-footer', '<menu-item btn-title="Find"></menu-item> <menu-item btn-title="Edit"></menu-item> <menu-item btn-title="Share"></menu-item> <menu-item btn-title="Punch"></menu-item>', 'main-footer { box-shadow: 0 4px #2980b9; height: 80px; background: #3699db; display: flex; justify-content: space-between; margin-bottom: 4px; }', '', function (opts) {});
+
+},{"./menu-item.tag":3}],2:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./menu-item.tag');
 require('./overlay-menu.tag');
 var BrowserRequest = require('../libs/browserRequest');
 
@@ -47,7 +54,7 @@ riot.tag2('main-header', '<div class="left-section"> <menu-item onclick="{toggle
     });
 });
 
-},{"../libs/browserRequest":4,"./menu-item.tag":2,"./overlay-menu.tag":3}],2:[function(require,module,exports){
+},{"../libs/browserRequest":6,"./menu-item.tag":3,"./overlay-menu.tag":4}],3:[function(require,module,exports){
 'use strict';
 
 module.exports = riot.tag2('menu-item', '<button onclick="{onClick}">{title}</button>', 'menu-item button{ border-radius: 4px; font-weight: 400; font-size: 18px; font-family: \'Raleway\', serif; margin: 10px 10px; height: 60px; min-width: 60px; border: none; background: #2980b9; box-shadow: 0 4px #1a4869; } menu-item button:active { box-shadow: 0 0 #1a4869; transform: translateY(2px); } menu-item button:focus { border: none; outline:none; }', '', function (opts) {
@@ -69,7 +76,7 @@ module.exports = riot.tag2('menu-item', '<button onclick="{onClick}">{title}</bu
     });
 });
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 module.exports = riot.tag2('overlay-menu', '<a href="javascript:void(0)" class="closebtn" onclick="{hideMenu}">&times;</a> <div class="overlay-content"> <a href="#" class="overlay-item">About</a> <a href="#" class="overlay-item">Posts</a> <a href="#" class="overlay-item">Settings</a> </div>', 'overlay-menu { height: 100%; width: 100%; position: fixed; z-index: 1; left: 0; top: 0; background-color: rgb(0,0,0); background-color: rgba(0,0,0, 0.9); overflow-x: hidden; } .overlay-content { position: relative; top: 25%; width: 100%; text-align: center; margin-top: 30px; transform: perspective(500px); transform-style: preserve-3d; } overlay-menu a { padding: 8px; text-decoration: none; font-size: 36px; color: #818181; display: block; transition: 0.3s; } overlay-menu .overlay-item { transition: .4s; } overlay-menu .overlay-item:active { transform: scale(0.3); } overlay-menu a:hover, overlay-menu a:focus { color: #f1f1f1; } overlay-menu .closebtn { position: absolute; top: 20px; right: 45px; font-size: 60px !important; } @media screen and (max-height: 450px) { overlay-menu a {font-size: 20px} overlay-menu .closebtn { font-size: 40px !important; top: 15px; right: 35px; } }', '', function (opts) {
@@ -85,7 +92,38 @@ module.exports = riot.tag2('overlay-menu', '<a href="javascript:void(0)" class="
         };
 });
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./main-header.tag');
+require('./main-footer.tag');
+
+riot.tag2('todo-app', '<main-header title="{state.title}" user="{state.user}" state="{state}"></main-header> <main> <ul></ul> </main> <main-footer></main-footer>', '@import url(https://fonts.googleapis.com/css?family=Raleway); body{ margin: 0; } todo-app { font-family: \'Raleway\', serif; display: flex; min-height: 100vh; flex-direction: column; } main { margin: 4px 0 0 0; flex: 1; background: darkgrey; }', '', function (opts) {
+    'use strict';
+
+    var todoApp = this;
+
+    todoApp.state = riot.observable(opts.state);
+    console.log(todoApp.state);
+
+    todoApp.state.on('user-sign-in', function (userData) {
+
+        todoApp.state.user = userData;
+        todoApp.update();
+
+        console.log(todoApp.state);
+    });
+
+    todoApp.state.on('user-sign-out', function () {
+
+        todoApp.state.user = false;
+        todoApp.update();
+
+        console.log(todoApp.state);
+    });
+});
+
+},{"./main-footer.tag":1,"./main-header.tag":2}],6:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -133,4 +171,4 @@ var BrowserRequest = function () {
 
 module.exports = BrowserRequest;
 
-},{}]},{},[1]);
+},{}]},{},[5]);

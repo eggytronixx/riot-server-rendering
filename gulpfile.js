@@ -24,7 +24,7 @@ gulp.task('riot', () => {
 
         return browserify({ entries: [filepath]})
             .transform(riotify)
-            .transform(babelify, { presets: ['es2015'], extensions: ['.tag']})
+            .transform(babelify, { presets: ['es2015'], extensions: ['.tag', '.js']})
             .bundle()
             .pipe(source(`${file.split('.')[0]}.js`))
             .pipe(gulp.dest('public/components'));

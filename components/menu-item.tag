@@ -3,6 +3,7 @@
     <button onclick={onClick}>{title}</button>
 
     <script>
+        'use strict';
 
         function defaultFn() {}
 
@@ -14,6 +15,12 @@
             if(opts.onClick) opts.onClick(e, menuItem);
 
         };
+
+        menuItem.on('update-title', function (newTitle) {
+
+            menuItem.update({title: newTitle});
+
+        });
 
     </script>
 

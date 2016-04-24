@@ -4,21 +4,22 @@
 
     <!-- Overlay content -->
     <div class="overlay-content">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="#" class="overlay-item">About</a>
+        <a href="#" class="overlay-item">Posts</a>
+        <a href="#" class="overlay-item">Settings</a>
     </div>
 
 
     <script>
+        'use strict';
 
         const overlayMenu = this;
 
+        overlayMenu.state = opts.state;
+
         overlayMenu.hideMenu = function () {
 
-            overlayMenu.parent.isMenuOpen = false;
-            overlayMenu.parent.update();
+            overlayMenu.state.trigger('toggle-menu');
 
         };
 
@@ -45,9 +46,11 @@
             width: 100%; /* 100% width */
             text-align: center; /* Centered text/links */
             margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+
+            transform: perspective(500px);
+            transform-style: preserve-3d;
         }
 
-        /* The navigation links inside the overlay */
         overlay-menu a {
             padding: 8px;
             text-decoration: none;
@@ -57,8 +60,18 @@
             transition: 0.3s; /* Transition effects on hover (color) */
         }
 
+        /* The navigation links inside the overlay */
+        overlay-menu .overlay-item {
+            transition: .4s;
+        }
+
+        overlay-menu .overlay-item:active {
+            transform: scale(0.3);
+        }
+
         /* When you mouse over the navigation links, change their color */
         overlay-menu a:hover, overlay-menu a:focus {
+
             color: #f1f1f1;
         }
 
