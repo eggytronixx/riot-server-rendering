@@ -1,6 +1,6 @@
 require('./menu-item.tag');
 require('./overlay-menu.tag');
-var BrowserRequest = require('../libs/browserRequest');
+var BrowserRequest = require('../public/js/browserRequest');
 
 <main-header>
 

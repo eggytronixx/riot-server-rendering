@@ -37,7 +37,7 @@ gulp.task('riot', () => {
 
 gulp.task('watch', () => {
 
-    gulp.watch('components/**/*.tag', ['riot']);
+    gulp.watch(['components/**/*.tag', 'public/js/**/*.js'], ['riot']);
 
 });
 

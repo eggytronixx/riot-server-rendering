@@ -3,7 +3,7 @@
 
 module.exports = require('./menu-item.tag');
 require('./overlay-menu.tag');
-var BrowserRequest = require('../libs/browserRequest');
+var BrowserRequest = require('../public/js/browserRequest');
 
 riot.tag2('main-header', '<div class="left-section"> <menu-item onclick="{toggleMenu}" btn-title="Menu"></menu-item> </div> <div class="middle-section"> <h1>{title}</h1> </div> <div class="right-section"> <menu-item if="{!state.user}" on-click="{signInUser}" btn-title="Sign In"></menu-item> <menu-item if="{state.user}" on-click="{signOutUser}" btn-title="Sign Out"></menu-item> </div> <overlay-menu if="{state.isMenuOpen}" state="{opts.state}"></overlay-menu>', 'main-header { box-shadow: 0 4px #2980b9; height: 80px; display: flex; flex-direction: row; background: #3699db; } main-header .left-section{ width: 25%; } main-header .right-section { width: 25%; } main-header .right-section menu-item{ position: absolute; right: 10px; } main-header .middle-section{ text-align:center; width: 50%; }', '', function (opts) {
     'use strict';
@@ -47,7 +47,7 @@ riot.tag2('main-header', '<div class="left-section"> <menu-item onclick="{toggle
     });
 });
 
-},{"../libs/browserRequest":4,"./menu-item.tag":2,"./overlay-menu.tag":3}],2:[function(require,module,exports){
+},{"../public/js/browserRequest":4,"./menu-item.tag":2,"./overlay-menu.tag":3}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = riot.tag2('menu-item', '<button onclick="{onClick}">{title}</button>', 'menu-item button{ border-radius: 4px; font-weight: 400; font-size: 18px; font-family: \'Raleway\', serif; margin: 10px 10px; height: 60px; min-width: 60px; border: none; background: #2980b9; box-shadow: 0 4px #1a4869; } menu-item button:active { box-shadow: 0 0 #1a4869; transform: translateY(2px); } menu-item button:focus { border: none; outline:none; }', '', function (opts) {

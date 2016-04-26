@@ -6,6 +6,7 @@
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "gulp": "^3.9.1",
     "morgan": "^1.7.0",
     "riot": "^2.3.18"
   },
@@ -14,8 +15,11 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "event-stream": "^3.3.2",
-    "gulp": "^3.9.1",
     "source": "0.0.3",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "gulp": "./node_modules/gulp/bin/gulp.js",
+    "server": "node server.js"
   }
 }
