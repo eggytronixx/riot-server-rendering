@@ -7,6 +7,7 @@ const compression = require('compression');
 const session = require('express-session');
 const app = express();
 const riotRenderComponent = require('./libs/renderComponent');
+const validation = require('./libs/validation');
 
 let oneDay = 86400000;
 
@@ -21,7 +22,6 @@ app.use(session({
 app.use(compression());
 
 // this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // middleware logger
@@ -29,6 +29,9 @@ app.use(morgan('dev'));
 
 // middleware to render component;
 app.use(riotRenderComponent({ path: `${__dirname}/components`}));
+
+// middleware for validating
+app.use(validation());
 
 // allow access to public
 app.use(express.static(`${__dirname}/public`, { maxAge: oneDay }));

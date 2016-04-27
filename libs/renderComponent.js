@@ -24,7 +24,7 @@ function renderFullPage(title, html, tagName, opts) {
     `;
 
 }
-module.exports =function (options) {
+module.exports = function (options) {
 
     let tagFilenames  = fs.readdirSync(options.path);
 
@@ -45,6 +45,3 @@ module.exports =function (options) {
     };
 
 };
-
-
-

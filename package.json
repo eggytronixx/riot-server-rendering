@@ -6,6 +6,7 @@
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "express-validator": "^2.20.3",
     "gulp": "^3.9.1",
     "morgan": "^1.7.0",
     "riot": "^2.3.18"

@@ -12,10 +12,19 @@ api.get('/', (req, res) => {
 
 api.post('/signin', (req, res) => {
 
-    console.log(req.body);
-    console.log(req.query);
-    console.log(req.headers);
+    req.check('body').field('email')
+       .is('string', 'Invalid email field, must be a string.')
+       .is('email', 'Invalid email field, must be a valid email.');
 
+    req.check('body').field('password')
+       .is('string', 'Invalid password field.');
+
+    req.check('query').field('fakeEmail')
+        .isOptional('email', 'Token string missing.')
+
+    let errors = req.validationErrors();
+
+    if(errors.length) return res.status(400).json(errors);
 
     let user = {
         name: { first: 'Edgar', last: 'Nunes'},
@@ -27,4 +36,3 @@ api.post('/signin', (req, res) => {
 });
 
 module.exports = api;
-
