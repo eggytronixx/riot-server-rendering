@@ -1,5 +1,6 @@
 require('./main-header.tag');
 require('./main-footer.tag');
+require('./btn.tag');
 
 <todo-app>
 
@@ -7,6 +8,12 @@ require('./main-footer.tag');
 
     <main>
         <ul></ul>
+        <btn type="default" size="lg" title="Default"/>
+        <btn type="success" size="lg" title="Success"/>
+        <btn type="danger" title="Danger"/>
+        <btn type="warning" title="Warning"/>
+        <btn type="dark" title="Dark"/>
+
     </main>
 
     <main-footer />
@@ -47,7 +54,7 @@ require('./main-footer.tag');
 
         @import url(https://fonts.googleapis.com/css?family=Raleway);
 
-        body{
+        body {
             margin: 0;
         }
 
@@ -61,7 +68,6 @@ require('./main-footer.tag');
         main {
             margin: 4px 0 0 0;
             flex: 1;
-            background: darkgrey;
         }
 
     </style>

@@ -19,9 +19,6 @@ api.post('/signin', (req, res) => {
     req.check('body').field('password')
        .is('string', 'Invalid password field.');
 
-    req.check('query').field('fakeEmail')
-        .isOptional('email', 'Token string missing.')
-
     let errors = req.validationErrors();
 
     if(errors.length) return res.status(400).json(errors);
