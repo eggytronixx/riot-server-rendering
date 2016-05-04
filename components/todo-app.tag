@@ -1,19 +1,17 @@
 require('./main-header.tag');
 require('./main-footer.tag');
 require('./btn.tag');
+require('./input-control.tag');
 
 <todo-app>
 
     <main-header title={state.title} user={state.user} state={state} />
 
     <main>
-        <ul></ul>
-        <btn type="default" size="lg" title="Default"/>
-        <btn type="success" size="lg" title="Success"/>
-        <btn type="danger" title="Danger"/>
-        <btn type="warning" title="Warning"/>
-        <btn type="dark" title="Dark"/>
-
+        <form>
+            <input-control type="text" name="email" placeholder="Enter Email" label="Email Address"/>
+            <btn type="success" size="md" title="Success"/>
+        </form>
     </main>
 
     <main-footer />

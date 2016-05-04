@@ -2,6 +2,21 @@ require('./menu-item.tag');
 
 <main-footer>
 
+    <style>
+
+        main-footer {
+            box-shadow: 0 4px #2980b9;
+            height: 80px;
+            background: #3699db;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+
+        }
+
+    </style>
+
+
 
     <menu-item btn-title="Find" />
     <menu-item btn-title="Edit" />
@@ -12,22 +27,6 @@ require('./menu-item.tag');
     <script>
         'use strict';
 
-
     </script>
-
-        <style>
-
-            main-footer {
-                box-shadow: 0 4px #2980b9;
-                height: 80px;
-                background: #3699db;
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 4px;
-
-            }
-
-
-        </style>
 
 </main-footer>
